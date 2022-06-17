@@ -1,0 +1,62 @@
+.btn-div{
+    display: flex;
+    justify-content: space-evenly;
+    gap:1rem;
+    align-items: center;
+    background: #fff;
+    padding: 5px 15px;
+    margin-top: 10px;
+    box-shadow:rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px; 
+    border-radius: 4px;
+}
+.main-btn-div{
+    border:1px solid red;
+    padding: 20px 3%;
+}
+.add-btn{
+background: #1f3d6c;
+color:#fff;
+border:none;
+border-radius: 7px;
+height:1.5rem;
+width:3.5rem ;
+font-size: 0.8rem;
+}
+.del-btn{
+background: #ec5064;
+color:#fff;
+border: none;
+border-radius: 7px;
+height:1.5rem;
+width:3.5rem ;
+font-size: 0.8rem;
+}
+.heading{
+    margin:0;
+}
+.action-div{
+    display:flex;
+    justify-content: space-between;
+}
+.action-btn-submit{
+    background:green ;
+    color:#fff;
+    border: none;
+    border-radius: 7px;
+    padding: 5px 5px;
+    height: 2rem;
+    width: 5rem;
+}
+.action-btn-close{
+    background:#ec5064 ;
+    color:#fff;
+    border: none;
+    border-radius: 7px;
+    padding: 5px 5px;
+    height: 2rem;
+    width: 5rem;
+}
+.btn-sub-div{
+    display:flex;
+    gap:0.1rem;
+}
