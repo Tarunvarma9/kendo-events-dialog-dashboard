@@ -14,15 +14,9 @@ const Header = () => {
 
           <AppBarSpacer style={{ width: 8 }} />
 
-          {/* <AppBarSection>
-            <h6 className="title">Events Dashboard</h6>
-          </AppBarSection> */}
 
           <AppBarSpacer style={{ width: 32 }} />
 
-          {/* <AppBarSection>
-            <input className="k-input k-input-md k-rounded-md k-input-solid" placeholder="Search" />
-          </AppBarSection> */}
 
           <AppBarSpacer />
 
