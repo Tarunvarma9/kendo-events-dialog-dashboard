@@ -3,6 +3,7 @@ import "./index.css";
 function Dialog() {
   return (
     <div className="main-btn-div">
+        <h5 style={{textAlign:"center",fontWeight:'800'}}>Graphs</h5>
       <div className="btn-div">
         <h6 className="heading">Graph1</h6>
         &nbsp;

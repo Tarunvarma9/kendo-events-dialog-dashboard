@@ -1,0 +1,16 @@
+.dialog-btn{
+    border: none;
+    margin-bottom: 5px;
+    background: #1f3d6c;
+    color:#fff;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    padding: 5px 20px;
+}
+.row{
+    margin: 10px 0px;
+}
+.container{
+    margin-top: 10px ;
+}

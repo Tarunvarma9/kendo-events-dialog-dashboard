@@ -1,14 +1,14 @@
 import React from 'react'
 import AllCharts from '../app/allcharts'
+import ChartBoard from '../app/charts'
 import Header from './header/Header'
 
 function Layout() {
   return (
     <>
-    <div style={{background:'ghostwhite',height:'100vh'}}>
+    <div style={{background:'#ccc',height:'100%'}}>
     <Header/>
-    <br/>
-    <AllCharts/>
+    <ChartBoard/>
     </div>
     </>
   )
