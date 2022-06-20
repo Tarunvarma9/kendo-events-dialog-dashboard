@@ -26,7 +26,7 @@ function PieChart() {
  const labelContent = (e:any) => e.category;
  const legend = { position: 'right', orientation: "vertical", labels: { font: '0.65em Roboto, Arial, sans-serif' } };
  return (
- <div className="col-4">
+ <div className="col-4 mb-2">
  <div className="k-card">
  <Chart style={{ height: "250px" }}>
  <ChartTitle text="Category Spent & Savings" />

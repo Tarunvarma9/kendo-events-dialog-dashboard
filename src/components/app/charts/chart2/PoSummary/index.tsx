@@ -52,7 +52,7 @@ function PoSummary() {
 
   return (
     <>
-      <div className="col-4">
+      <div className="col-4 mb-2">
         <div className="k-card">
           <Chart
             style={{ height: "250px" }}

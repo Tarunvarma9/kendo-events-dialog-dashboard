@@ -20,15 +20,15 @@ function ChartBoard() {
                     Dialog
                 </button> : null}</div>
 
-            <div className='row'>
+            <div className='row' >
                 {graphsList.includes("PoSummary") && <PoSummary />}
                 {graphsList.includes("PieChart") && <PieChart />}
                 {graphsList.includes("BuSpend") && <BuSpend />}
-            </div>
-            <div className='row'>
+          
             {graphsList.includes("DonutChart") && <DonutChart />}
             {graphsList.includes("BarChart") && <BarChart />}
             </div>
+            
             <br />
         </div>
     </>

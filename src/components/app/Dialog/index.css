@@ -61,3 +61,6 @@ font-size: 0.8rem;
     display:flex;
     gap:0.1rem;
 }
+.disabled-btn{
+    opacity: 0.5;
+}

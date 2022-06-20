@@ -22,7 +22,7 @@ const data = [
 
 function DonutChart() {
   return (
-    <div className="col-4">
+    <div className="col-4 mb-2">
       <div className="k-card">
         <Chart style={{ height: "250px" }}>
           <ChartTitle text="Catalog Vs. Non-Catalog Savings" />
