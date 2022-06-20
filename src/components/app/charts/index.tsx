@@ -15,18 +15,26 @@ function ChartBoard() {
 
     return (<>
         <div className='container'>
-            <div style={{ display: 'flex', justifyContent: 'flex-end' }}>{hidden ? null : <Dialog />}
-                {hidden ? <button className='dialog-btn' onClick={changeView}>
+  <div style={{display:"flex",justifyContent:'flex-end'}}>
+  {hidden ? <button className='dialog-btn' onClick={changeView}>
                     Dialog
-                </button> : null}</div>
+                </button> : null}
+  </div>
+      
 
-            <div className='row' >
+            <div className='graph-row' >
+          
+                <div style={{width: '100%', display: 'flex',flexWrap:'wrap'}}>
                 {graphsList.includes("PoSummary") && <PoSummary />}
                 {graphsList.includes("PieChart") && <PieChart />}
                 {graphsList.includes("BuSpend") && <BuSpend />}
           
             {graphsList.includes("DonutChart") && <DonutChart />}
             {graphsList.includes("BarChart") && <BarChart />}
+
+            </div>
+            <div >{hidden ? null : <Dialog />}
+             </div>
             </div>
             
             <br />

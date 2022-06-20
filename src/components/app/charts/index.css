@@ -8,8 +8,9 @@
     font-weight: 700;
     padding: 5px 20px;
 }
-.row{
+.graph-row{
     margin: 10px 0px;
+    display: flex;
 }
 .container{
     margin-top: 10px ;

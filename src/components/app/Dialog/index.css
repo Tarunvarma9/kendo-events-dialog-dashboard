@@ -1,7 +1,6 @@
 .btn-div{
     display: flex;
     justify-content: space-evenly;
-    gap:1rem;
     align-items: center;
     background:#fff;
     padding: 7px 15px;
@@ -13,6 +12,7 @@
     padding: 20px 3%;
     border-radius: 8px;
     background: #fff;
+
 }
 .add-btn{
 background: #1f3d6c;
@@ -34,6 +34,7 @@ font-size: 0.8rem;
 }
 .heading{
     margin:0;
+    width: 50%;
 }
 .action-div{
     display:flex;
@@ -60,6 +61,8 @@ font-size: 0.8rem;
 .btn-sub-div{
     display:flex;
     gap:0.1rem;
+    width: 50%;
+
 }
 .disabled-btn{
     opacity: 0.5;
