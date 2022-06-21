@@ -2,7 +2,6 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { useEffect } from "react";
 import { Loader } from "@progress/kendo-react-indicators";
-import { Dialog, DialogActionsBar } from "@progress/kendo-react-dialogs";
 import '../../../../custom/custom.css'
 import {
   Chart,
@@ -14,9 +13,6 @@ import {
   ChartTitle,
   SeriesClickEvent,
 } from "@progress/kendo-react-charts";
-import LineChart from "../LinearChart";
-// const data = [20, 170, 245, 215, 195, 110];
-// const categories = ["May", "Apr", "Mar", "Feb", "Jan", "Dec"];
 
 function PoSummary2() {
   const [visible, setVisible] = React.useState<boolean>(true);
@@ -67,34 +63,18 @@ function PoSummary2() {
           {loading ? (<><Loader size="large" type={"infinite-spinner"} /></>):(<><div className="k-card">
           <Chart
             style={{ height: "300px",width:'450px'}}
-            // onSeriesClick={(event: SeriesClickEvent) => popupView(event)}
           >
             <ChartTitle text="Category" />
             <ChartLegend position="bottom" orientation="horizontal" />
             <ChartCategoryAxis>
-              <ChartCategoryAxisItem categories={poCategory} startAngle={0} labels={{ rotation: -35}}/>
+              <ChartCategoryAxisItem categories={poCategory} startAngle={0} labels={{ rotation: -35}} />
             </ChartCategoryAxis>
             <ChartSeries>
-              <ChartSeriesItem data={poData}  />
+              <ChartSeriesItem data={poData} tooltip={{ visible: true }}  />
             </ChartSeries>
           </Chart>
         </div></>)}
-        
       </div>
-      {/* {visible ? null : (
-        <Dialog onClose={toggleDialog}>
-          <LineChart />
-
-          <DialogActionsBar>
-            <button
-              className="k-button k-button-md k-rounded-md k-button-solid k-button-solid-base"
-              onClick={toggleDialog}
-            >
-              close
-            </button>
-          </DialogActionsBar>
-        </Dialog>
-      )} */}
     </>
   );
 }

@@ -146,9 +146,9 @@ def all_graphs(db:Session = Depends(get_db)):
     return data
 
 
-@prefix_router.get('/user/graphsdetails/')
-def graphs(user_id:int,db:Session = Depends(get_db)):
-    data = db.query(models.Graphs).select_from(models.SelectedGraphs).join(models.User, models.User.id == models.SelectedGraphs.user_id).join(models.Graphs, models.Graphs.id == models.SelectedGraphs.graph_id).filter(models.User.id == user_id).all()
+@prefix_router.get('/user/graphsdetails/{userId}')
+def graphs(userId:int,db:Session = Depends(get_db)):
+    data = db.query(models.Graphs).select_from(models.SelectedGraphs).join(models.User, models.User.id == models.SelectedGraphs.user_id).join(models.Graphs, models.Graphs.id == models.SelectedGraphs.graph_id).filter(models.User.id == userId).all()
     return data
 
 

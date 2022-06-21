@@ -1,14 +1,14 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
 import { Chart, ChartSeries, ChartSeriesItem, ChartTitle, ChartCategoryAxis,
-    ChartCategoryAxisItem,  ChartLegendTitle,ChartLegend,
-    ChartLegendItem} from '@progress/kendo-react-charts';
+    ChartCategoryAxisItem,  ChartLegend,
+    } from '@progress/kendo-react-charts';
 import 'hammerjs';
-const [firstSeries, secondSeries] = [[1, 2, 3, 5], [1, 2, 3, 5]];
+import { Loader } from "@progress/kendo-react-indicators";
 
 const MsmeChart = () =>{
    const [msmedata,Setmsmedata]=React.useState<any[]>([])
-   const [msmevalue,Setmsmevalue]=React.useState<any[]>([])  
+   const [msmevalue,Setmsmevalue]=React.useState<any[]>([])
+   const [loading, setLoading] = React.useState(true)  
 
    React.useEffect(() => {
         const headers = {method: "GET",
@@ -29,8 +29,7 @@ const MsmeChart = () =>{
           }
           Setmsmedata(data1)
           Setmsmevalue(data2)
-        console.log(data,"category ****data")
-          
+          setLoading(false)
         }
         fetchData()
         
@@ -38,6 +37,8 @@ const MsmeChart = () =>{
       },[]);
 
 return(
+  <>
+  {loading ? (<><Loader size="large" type={"infinite-spinner"} /></>):(<><div className="k-card">
 <Chart style={{height:'300px',width:'450px' }}>
 <ChartTitle text="MSME" />
 <ChartLegend position="bottom" orientation="horizontal" />
@@ -46,8 +47,9 @@ return(
               <ChartCategoryAxisItem categories={msmedata} startAngle={0}/>
             </ChartCategoryAxis>
       <ChartSeriesItem type="bar"  data={msmevalue} tooltip={{ visible: true }} />
-      {/* <ChartSeriesItem type="bar" data={msmevalue}  tooltip={{ visible: true }} /> */}
     </ChartSeries>
-  </Chart>);
+  </Chart>
+  </div></>)}
+  </>);
 }
   export default MsmeChart

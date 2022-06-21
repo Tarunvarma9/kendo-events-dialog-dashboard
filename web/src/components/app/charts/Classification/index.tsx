@@ -3,11 +3,14 @@ import * as ReactDOM from 'react-dom';
 import { Chart, ChartSeries, ChartSeriesItem, ChartTitle, ChartCategoryAxis,
     ChartCategoryAxisItem,  ChartLegendTitle,ChartLegend,
     ChartLegendItem} from '@progress/kendo-react-charts';
+    import { Loader } from "@progress/kendo-react-indicators";
+
 import 'hammerjs';
 
 const ClassificationChart = () =>{
    const [classificationdata,Setclassificationdata]=React.useState<any[]>([])
    const [classificationvalue,Setclassificationvalue]=React.useState<any[]>([])  
+   const [loading, setLoading] = React.useState(true)
 
    React.useEffect(() => {
         const headers = {method: "GET",
@@ -28,6 +31,7 @@ const ClassificationChart = () =>{
           }
           Setclassificationdata(data1)
           Setclassificationvalue(data2)
+          setLoading(false)
           
         }
         fetchData()
@@ -35,7 +39,8 @@ const ClassificationChart = () =>{
           
       },[]);
 
-return(
+return(<>
+ {loading ? (<><Loader size="large" type={"infinite-spinner"} /></>):(<><div className="k-card">
 <Chart style={{height:'300px',width:'450px'}}>
 <ChartTitle text="classification" />
 <ChartLegend position="bottom" orientation="horizontal" />
@@ -44,10 +49,9 @@ return(
               <ChartCategoryAxisItem categories={classificationdata} startAngle={0} />
             </ChartCategoryAxis>
       <ChartSeriesItem type="bar"  data={classificationvalue} tooltip={{ visible: true }} />
-      {/* <ChartSeriesItem type="bar" data={msmevalue}  tooltip={{ visible: true }} /> */
-      console.log(classificationdata, "class")
-      }
     </ChartSeries>
-  </Chart>);
+  </Chart>
+  </div></>)}
+  </>);
 }
   export default ClassificationChart

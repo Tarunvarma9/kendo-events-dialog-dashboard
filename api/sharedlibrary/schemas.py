@@ -13,3 +13,5 @@ class SelectedGraph(BaseModel):
 class DeleteGraph(BaseModel):
     graphIdList: list
     userId: int         
+class Userid(BaseModel):
+    userId: int     

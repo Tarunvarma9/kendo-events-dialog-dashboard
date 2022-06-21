@@ -1,9 +1,4 @@
 import React, {useContext, useState} from 'react'
-import PoSummary from './chart2/PoSummary'
-import PieChart from './chart2/pieChart'
-import BuSpend from './chart2/BuSpend'
-import DonutChart from './chart2/DonutChart'
-import BarChart from './chart2/BarChart'
 import Dialog from '../Dialog'
 import './index.css'
 import GraphsContext from '../../../context'
@@ -11,6 +6,7 @@ import PoSummary2 from './PoSummary2'
 import CategorySpend2 from './CategorySpend2'
 import MsmeChart from './Msme'
 import ClassificationChart from './Classification'
+import '../../../custom-event/custom-event.css'
 
 function ChartBoard() {
     
@@ -26,7 +22,7 @@ function ChartBoard() {
   </div>
       
 
-            <div className='graph-row' >
+            <div className='graph-row' style={{padding:"20px 0px"}} >
           
                 <div style={{width: '100%', display: 'flex',flexWrap:'wrap',gap:'2rem',justifyContent:'center'}}>
                 {graphsList.includes("Category") && <PoSummary2/>}
