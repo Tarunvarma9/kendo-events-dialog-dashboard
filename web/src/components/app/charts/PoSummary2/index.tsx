@@ -65,11 +65,11 @@ function PoSummary2() {
  console.log(poCategory, poData)
   return (
     <>
-      <div className="col-4" style={{}}>
+      <div className="col-4" >
           {loading ? (<><Loader size="large" type={"infinite-spinner"} /></>):(<><div className="k-card">
           <Chart
             style={{ height: "300px" }}
-            onSeriesClick={(event: SeriesClickEvent) => popupView(event)}
+            // onSeriesClick={(event: SeriesClickEvent) => popupView(event)}
           >
             <ChartTitle text="Category" />
             <ChartLegend position="bottom" orientation="horizontal" />

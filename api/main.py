@@ -1,5 +1,5 @@
-from fastapi import FastAPI,APIRouter
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi import Depends, FastAPI, HTTPException, status,APIRouter
 import psycopg2
 import uvicorn
 from datetime import datetime, timedelta 
@@ -8,6 +8,16 @@ import os
 from dotenv import load_dotenv
 import logging
 from pydantic import BaseModel
+from sqlalchemy.orm import Session
+from sqlalchemy import and_, null
+from sharedlibrary import models,schemas
+from datetime import datetime, timedelta 
+from sharedlibrary.database import SessionLocal, engine
+from passlib.context import CryptContext
+from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer,OAuth2PasswordBearer, OAuth2PasswordRequestForm
+
+models.Base.metadata.create_all(bind=engine)
+
 load_dotenv()
 prefix_router = APIRouter()
 
@@ -21,10 +31,23 @@ app.add_middleware(
     allow_headers=["*"],
 )  
 
+
+
+
 SECRET_KEY = "09d25e094faa6ca2556c818166b7a9563b93f7099f6f0f4caa6cf63b88e8d3e7"
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = int(os.getenv('TOKEN_ACCESS_EXPIRE_MINUTES'))
 
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+
+pwd_context= CryptContext(schemes=["bcrypt"],deprecated='auto')
+security = HTTPBearer()
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 class EndpointFilter(logging.Filter):
     def filter(self, record: logging.LogRecord) -> bool:
@@ -40,11 +63,11 @@ class LoginRequest(BaseModel):
 
 
 
-def create_access_token():
-    to_encode = {}
+def create_access_token(data: dict):
+    to_encode = data.copy()
     expire = datetime.utcnow() + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
-    to_encode.update({"exp": expire,"code":'U2FsdGVkX19ozJjzO4hIzz4Ff1PG8sbBlHJP/2Az+caYDY/Ks6no4XL4Ad31YjxI5ygaOhla9JBjYwvw66zfIPoOL1n580ZrAoK8tY3cbKByTXh5+SKP0TT8xWSJC8Ym'})
-    encoded_jwt = jwt.encode(to_encode, SECRET_KEY)
+    to_encode.update({"exp": expire})
+    encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
     return encoded_jwt
 
 
@@ -58,6 +81,8 @@ def UATdb(query):
     cursor.close()
     connection.close()
     return result
+
+
 
 @prefix_router.get('/health')
 def health():
@@ -73,7 +98,7 @@ def get_MSME():
     for i in quries:
         v = UATdb(i)
         resultList.append(*v)
-    values =[ ["MSME Construction", resultList[0][0]],["Non-MSME Construction",  resultList[1][0]],["MSME Non-Con",   resultList[2][0]],["NON MSME Non Con", resultList[3][0]] ]
+    values =[ {"MSME Construction": resultList[0][0]},{"Non-MSME Construction":  resultList[1][0]},{"MSME Non-Con":   resultList[2][0]},{"NON MSME Non Con": resultList[3][0]} ]
     return values
 
 
@@ -86,7 +111,7 @@ def get_Classification():
         v = UATdb(i)
         resultList.append(*v)
 
-    values = [["Above 1 cr Cons", resultList[0][0]]  ,["Below 1 cr Cons",  resultList[1][0]],["Above 1cr Non Cons",   resultList[2][0]],["Below 1cr Non Cons", resultList[3][0]]]   
+    values = [["Above 1 cr Cons", resultList[0][0]]  ,["Below 1 cr Cons",  resultList[1][0]],["Above 1cr Non Cons",  resultList[2][0]],["Below 1cr Non Cons", resultList[3][0]]]   
     return values   
 
 @prefix_router.get('/Category')
@@ -101,10 +126,54 @@ def get_Region():
     resultList = UATdb(query)
     return resultList 
 
+
+@prefix_router.post('/login/')
+def login(request:LoginRequest,db:Session= Depends(get_db)):
+    
+    current_user=db.query(models.User).filter(models.User.username == request.username).first()
+    print(current_user.username,current_user.id)
+    if(current_user==None):
+        return "user not found"
+    else:
+        returnData = {"user_name": current_user.username}
+        access_token = create_access_token(data={"user_id": current_user.id, "user_name": current_user.username}) 
+        return{"access_token":access_token, "token_type":"bearer", "user_data": returnData}   
+       
+
+@prefix_router.get('/graphsdetails/')
+def graphs(db:Session = Depends(get_db)):
+    data=db.query(models.Graphs).all()
+    return data
+
+
+@prefix_router.post("/selectedGraph/")
+def insert(request:schemas.SelectedGraph ,db:Session=Depends(get_db)):
+    for graphId in request.graphIdList:
+        add_graph= models.SelectedGraphs(user_id=request.userId,graph_id=graphId)
+        db.add(add_graph)
+        db.commit()
+        db.refresh(add_graph)
+
+    return add_graph
+
+
+
+@prefix_router.delete('/user/graph/delete/')
+def del_graph(request: schemas.DeleteGraph ,db:Session=Depends(get_db)):
+    for graphId in request.graphIdList:
+        db.query(models.SelectedGraphs).filter(and_(models.SelectedGraphs.graph_id == graphId, models.SelectedGraphs.user_id == request.userId)).delete(synchronize_session=False)
+        db.commit()
+    
+    return "done"
+
+
 app.include_router(
     prefix_router,
     prefix="/effigo/api/dashboard"
 ) 
+
+
+
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8001)

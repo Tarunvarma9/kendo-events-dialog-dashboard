@@ -21,7 +21,7 @@ function ChartBoard() {
         <div className='container'>
   <div style={{display:"flex",justifyContent:'flex-end'}}>
   {hidden ? <button className='dialog-btn' onClick={changeView}>
-                    Dialog
+                    Edit
                 </button> : null}
   </div>
       
@@ -34,7 +34,6 @@ function ChartBoard() {
                 {graphsList.includes("Classification") && <ClassificationChart />}
                 {graphsList.includes("CategorySpend") && <CategorySpend2 />}
             
-            {graphsList.includes("BarChart") && <BarChart />}
 
             </div>
             <div >{hidden ? null : <Dialog />}
