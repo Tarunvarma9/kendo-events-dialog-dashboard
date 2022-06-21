@@ -56,7 +56,7 @@ function CategorySpend2() {
   return (
     <div className="col-4">
         {loading ? <><Loader size="large" type={"infinite-spinner"} /></>:<><div className="k-card">
-        <Chart style={{ height: "300px" }}>
+        <Chart style={{ height: "300px",width:'450px' }}>
           <ChartTitle text="Category Spent & Savings" />
           <ChartLegend position="bottom" >
           <ChartLegendItem />

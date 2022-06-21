@@ -66,7 +66,7 @@ function PoSummary2() {
       <div className="col-4" >
           {loading ? (<><Loader size="large" type={"infinite-spinner"} /></>):(<><div className="k-card">
           <Chart
-            style={{ height: "300px" }}
+            style={{ height: "300px",width:'450px'}}
             // onSeriesClick={(event: SeriesClickEvent) => popupView(event)}
           >
             <ChartTitle text="Category" />

@@ -38,7 +38,7 @@ const MsmeChart = () =>{
       },[]);
 
 return(
-<Chart style={{height:'300px',width:'60%',padding:'0px 1%'}}>
+<Chart style={{height:'300px',width:'450px' }}>
 <ChartTitle text="MSME" />
 <ChartLegend position="bottom" orientation="horizontal" />
     <ChartSeries>

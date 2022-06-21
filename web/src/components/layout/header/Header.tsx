@@ -6,7 +6,7 @@ const Header = () => {
     return (
       <React.Fragment>
         <div>
-        <AppBar style={{background:'#fff',color:'#000',padding:'10px 7%'}}>
+        <AppBar style={{background:'#fff',color:'#000',padding:'10px 5%',height:"60px"}}>
           <AppBarSection>
             <img src='https://res.cloudinary.com/dptwgnj8t/image/upload/v1655205998/effigo-logo_zinm5a.jpg' alt='logo' style={{height:"2rem",width:'100%'}}/>
           </AppBarSection>
