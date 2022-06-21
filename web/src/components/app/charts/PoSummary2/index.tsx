@@ -3,6 +3,7 @@ import * as ReactDOM from "react-dom";
 import { useEffect } from "react";
 import { Loader } from "@progress/kendo-react-indicators";
 import { Dialog, DialogActionsBar } from "@progress/kendo-react-dialogs";
+import '../../../../custom/custom.css'
 import {
   Chart,
   ChartSeries,
@@ -34,18 +35,15 @@ function PoSummary2() {
     const fetchData = async () => {
       const data = await fetch(url, headers);
       const json = await data.json();
-      console.log(json,"catergory json")
       let data1 = []
       let data2:string[] = []
       for (let li of json){
-          console.log(li)
             data1.push(li[0])
             data2.push(li[1])
       }
       setPoCategory(data1)
       setPoData(data2)
       setLoading(false)
-    console.log(data,"category data")
       
     }
     fetchData()

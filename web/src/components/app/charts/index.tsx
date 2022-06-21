@@ -28,7 +28,7 @@ function ChartBoard() {
 
             <div className='graph-row' >
           
-                <div style={{width: '100%', display: 'flex',flexWrap:'wrap',gap:"1rem"}}>
+                <div style={{width: '100%', display: 'flex',flexWrap:'wrap',justifyContent:'space-evenly',gap:"1rem"}}>
                 {graphsList.includes("Category") && <PoSummary2/>}
                 {graphsList.includes("MSME") && <MsmeChart />}
                 {graphsList.includes("Classification") && <ClassificationChart />}

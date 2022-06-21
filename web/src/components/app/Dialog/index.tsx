@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import GraphsContext from "../../../context";
 import "./index.css";
+
 function Dialog() {
   const { changeView, graphsList, addGraph, removeGraph, dropdownList } = useContext(GraphsContext)
   return (

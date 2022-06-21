@@ -24,8 +24,6 @@ const MsmeChart = () =>{
           let data1 = []
           let data2:string[] = []
           for (let li of json){
-              console.log(li)
-              console.log(li[0])
                 data1.push(li[0])
                 data2.push(li[1])
           }

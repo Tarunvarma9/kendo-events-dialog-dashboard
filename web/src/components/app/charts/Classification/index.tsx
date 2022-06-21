@@ -25,11 +25,9 @@ const ClassificationChart = () =>{
           for (let li of json){
                 data1.push(li[0])
                 data2.push(li[1])
-                console.log(li,"calaass-mohan")
           }
           Setclassificationdata(data1)
           Setclassificationvalue(data2)
-        console.log(classificationdata,"classification ****data")
           
         }
         fetchData()

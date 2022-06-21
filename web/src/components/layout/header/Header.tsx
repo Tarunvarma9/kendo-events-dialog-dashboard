@@ -2,7 +2,6 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Avatar } from "@progress/kendo-react-layout";
 import { AppBar, AppBarSection, AppBarSpacer } from '@progress/kendo-react-layout';
-
 const Header = () => {
     return (
       <React.Fragment>
