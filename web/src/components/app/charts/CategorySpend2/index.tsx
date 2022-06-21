@@ -32,13 +32,14 @@ function CategorySpend2() {
           "access-control-allow-origin" : "*",
           "Content-type": "application/json; charset=UTF-8"
         }}
-        const url ="http://localhost:8000/effigo/api/dashboard/CategorySpend"
+        const url ="http://127.0.0.1:8000/effigo/api/dashboard/Region"
         const fetchData = async () => {
           const data = await fetch(url, headers);
           const json = await data.json();
+          console.log("catSpend2", json)
           let pieData:any[] = []
           for (let li of json){
-              let objectData:any = {"category": li[1], "value":li[3]}
+              let objectData:any = {"category": li[0], "value":li[1]}
               pieData.push(objectData)
           }
           setCatalogSpendData(pieData)
@@ -55,9 +56,9 @@ function CategorySpend2() {
   return (
     <div className="col-4">
         {loading ? <><Loader size="large" type={"infinite-spinner"} /></>:<><div className="k-card">
-        <Chart style={{ height: "250px" }}>
+        <Chart style={{ height: "300px" }}>
           <ChartTitle text="Category Spent & Savings" />
-          <ChartLegend position="right" >
+          <ChartLegend position="bottom" >
           <ChartLegendItem />
           </ChartLegend>
           <ChartSeries>

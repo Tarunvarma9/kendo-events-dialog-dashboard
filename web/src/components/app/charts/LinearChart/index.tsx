@@ -42,7 +42,7 @@ const LineChart = () => (
   <>
 
 
- <div style={{ width: "600px" }}>
+ <div style={{ width: "300px" }}>
 
  <Chart>
  <ChartTitle text="PO SUMMARY" font='1.06em Roboto, Arial, sans-serif' color="#000000" />

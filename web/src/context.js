@@ -3,8 +3,8 @@ import {createContext, useState} from 'react'
 const GraphsContext = createContext()
 
 export function GraphsProvider({children}){
-    const [graphsList, setGrapsList] = useState(["PoSummary","PieChart", "BuSpend", "DonutChart", "BarChart"])
-    const dropdownList = ["PoSummary","PieChart", "BuSpend", "DonutChart", "BarChart"]
+    const [graphsList, setGrapsList] = useState(["Category","MSME", "Classification", "CategorySpend", "BarChart"])
+    const dropdownList = ["Category","MSME", "Classification", "CategorySpend", "BarChart"]
     const [hidden, setHidden] = useState(true);
 
     const addGraph = g => {

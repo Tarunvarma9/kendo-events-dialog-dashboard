@@ -7,6 +7,10 @@ import BarChart from './chart2/BarChart'
 import Dialog from '../Dialog'
 import './index.css'
 import GraphsContext from '../../../context'
+import PoSummary2 from './PoSummary2'
+import CategorySpend2 from './CategorySpend2'
+import MsmeChart from './Msme'
+import ClassificationChart from './Classification'
 
 function ChartBoard() {
     
@@ -24,12 +28,12 @@ function ChartBoard() {
 
             <div className='graph-row' >
           
-                <div style={{width: '100%', display: 'flex',flexWrap:'wrap'}}>
-                {graphsList.includes("PoSummary") && <PoSummary />}
-                {graphsList.includes("PieChart") && <PieChart />}
-                {graphsList.includes("BuSpend") && <BuSpend />}
-          
-            {graphsList.includes("DonutChart") && <DonutChart />}
+                <div style={{width: '100%', display: 'flex',flexWrap:'wrap',gap:"1rem"}}>
+                {graphsList.includes("Category") && <PoSummary2/>}
+                {graphsList.includes("MSME") && <MsmeChart />}
+                {graphsList.includes("Classification") && <ClassificationChart />}
+                {graphsList.includes("CategorySpend") && <CategorySpend2 />}
+            
             {graphsList.includes("BarChart") && <BarChart />}
 
             </div>

@@ -30,21 +30,22 @@ function PoSummary2() {
       "access-control-allow-origin" : "*",
       "Content-type": "application/json; charset=UTF-8"
     }}
-    const url ="http://localhost:8000/effigo/api/dashboard/MonthlyPO"
+    const url ="http://127.0.0.1:8000/effigo/api/dashboard/Category"
     const fetchData = async () => {
       const data = await fetch(url, headers);
       const json = await data.json();
+      console.log(json,"catergory json")
       let data1 = []
       let data2:string[] = []
       for (let li of json){
           console.log(li)
-            data1.push(li[1])
-            data2.push(li[3])
+            data1.push(li[0])
+            data2.push(li[1])
       }
       setPoCategory(data1)
       setPoData(data2)
       setLoading(false)
-
+    console.log(data,"category data")
       
     }
     fetchData()
@@ -64,25 +65,25 @@ function PoSummary2() {
  console.log(poCategory, poData)
   return (
     <>
-      <div className="col-4">
+      <div className="col-4" style={{}}>
           {loading ? (<><Loader size="large" type={"infinite-spinner"} /></>):(<><div className="k-card">
           <Chart
-            style={{ height: "250px" }}
+            style={{ height: "300px" }}
             onSeriesClick={(event: SeriesClickEvent) => popupView(event)}
           >
-            <ChartTitle text="Monthly PO Summary" />
+            <ChartTitle text="Category" />
             <ChartLegend position="bottom" orientation="horizontal" />
             <ChartCategoryAxis>
-              <ChartCategoryAxisItem categories={poCategory} startAngle={0} />
+              <ChartCategoryAxisItem categories={poCategory} startAngle={0} labels={{ rotation: -35}}/>
             </ChartCategoryAxis>
             <ChartSeries>
-              <ChartSeriesItem data={poData} name="PO Count" />
+              <ChartSeriesItem data={poData}  />
             </ChartSeries>
           </Chart>
         </div></>)}
         
       </div>
-      {visible ? null : (
+      {/* {visible ? null : (
         <Dialog onClose={toggleDialog}>
           <LineChart />
 
@@ -95,7 +96,7 @@ function PoSummary2() {
             </button>
           </DialogActionsBar>
         </Dialog>
-      )}
+      )} */}
     </>
   );
 }
