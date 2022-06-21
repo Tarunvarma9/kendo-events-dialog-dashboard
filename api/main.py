@@ -98,7 +98,7 @@ def get_MSME():
     for i in quries:
         v = UATdb(i)
         resultList.append(*v)
-    values =[ ["MSME Construction", resultList[0][0]],["Non-MSME Construction",  resultList[1][0]],["MSME Non-Con",   resultList[2][0]],["NON MSME Non Con", resultList[3][0]] ]
+    values =[ {"MSME Construction": resultList[0][0]},{"Non-MSME Construction":  resultList[1][0]},{"MSME Non-Con":   resultList[2][0]},{"NON MSME Non Con": resultList[3][0]} ]
     return values
 
 
@@ -140,10 +140,17 @@ def login(request:LoginRequest,db:Session= Depends(get_db)):
         return{"access_token":access_token, "token_type":"bearer", "user_data": returnData}   
        
 
-@prefix_router.get('/graphsdetails/')
-def graphs(db:Session = Depends(get_db)):
+@prefix_router.get('/allgraphsdetails/')
+def all_graphs(db:Session = Depends(get_db)):
     data=db.query(models.Graphs).all()
     return data
+
+
+@prefix_router.get('/user/graphsdetails/')
+def graphs(user_id:int,db:Session = Depends(get_db)):
+    data = db.query(models.Graphs).select_from(models.SelectedGraphs).join(models.User, models.User.id == models.SelectedGraphs.user_id).join(models.Graphs, models.Graphs.id == models.SelectedGraphs.graph_id).filter(models.User.id == user_id).all()
+    return data
+
 
 
 @prefix_router.post("/selectedGraph/")
