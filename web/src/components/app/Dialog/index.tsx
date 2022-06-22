@@ -3,7 +3,12 @@ import GraphsContext from "../../../context";
 import "./index.css";
 
 function Dialog() {
-  const { changeView, graphsList, addGraph, removeGraph, dropdownList } = useContext(GraphsContext)
+  const { changeView, graphsList, addGraph, removeGraph, dropdownList, hiddenview, hidden } = useContext(GraphsContext)
+  const namesList = dropdownList.map((o:any) => o.graph_name)
+  const onSubmitButtonClick = () => {
+    hiddenview()
+    const lista = ["Category","MSME", "Classification", "CategorySpend", "BarChart"]
+  }
   return (
     <div className="main-btn-div">
       <h5 style={{ textAlign: "center", fontWeight: '800' }}>Graphs</h5>
@@ -27,7 +32,7 @@ function Dialog() {
 
       <br />
       <div className="action-div">
-        <button className="action-btn-submit">Submit</button>
+        <button className="action-btn-submit" onClick={onSubmitButtonClick}>Submit</button>
         <button className="action-btn-close" onClick={changeView}>Close</button>
       </div>
     </div>

@@ -1,25 +1,15 @@
 import * as React from 'react';
 import { Chart, ChartSeries, ChartSeriesItem, ChartTitle, ChartCategoryAxis,
-    ChartCategoryAxisItem,  ChartLegend,SeriesClickEvent
+    ChartCategoryAxisItem,  ChartLegend,
     } from '@progress/kendo-react-charts';
 import 'hammerjs';
 import { Loader } from "@progress/kendo-react-indicators";
-import { MdZoomOutMap } from "react-icons/md";
 
-import { AiOutlineClose } from "react-icons/ai";
-
-import { Dialog, DialogActionsBar } from "@progress/kendo-react-dialogs";
-import ClassificationPopup from '../ClassificationPopup';
-import MsmeChartPopup from '../MsmePopup';
-const MsmeChart = () =>{
+const MsmeChartPopup = () =>{
    const [msmedata,Setmsmedata]=React.useState<any[]>([])
    const [msmevalue,Setmsmevalue]=React.useState<any[]>([])
    const [loading, setLoading] = React.useState(true)  
-   const [largeView, setLargeView] = React.useState(true);
 
-   const toggleDialog = () => {
-     setLargeView(!largeView);
-   };
    React.useEffect(() => {
         const headers = {method: "GET",
         headers: {
@@ -47,12 +37,10 @@ const MsmeChart = () =>{
       },[]);
 
 return(
-  <>
+    <div className="col-12" style={{ width: "600px", height: "450px" }}>
   {loading ? (<><Loader size="large" type={"infinite-spinner"} /></>):(<><div className="k-card">
-  <span className="chart-heading-section"><p>{" "}</p><p style={{ margin: 0 , color: '#000',fontWeight: 'bold'}} >MSME </p><button className="zoom-button" onClick={toggleDialog}><MdZoomOutMap /></button></span>
-
-<Chart style={{height:'300px',width:'450px' }} onSeriesClick={(event: SeriesClickEvent) => toggleDialog()}>
-
+<Chart>
+<ChartTitle text="MSME" />
 <ChartLegend position="bottom" orientation="horizontal" />
     <ChartSeries>
     <ChartCategoryAxis style={{border:"1px solid black"}}>
@@ -61,16 +49,7 @@ return(
       <ChartSeriesItem type="bar"  data={msmevalue} tooltip={{ visible: true }} />
     </ChartSeries>
   </Chart>
-  </div>
-  {largeView ? null : (
-      <Dialog onClose={toggleDialog}>
-        <div style={{ display: "flex", justifyContent: "flex-end" }}>
-          <AiOutlineClose onClick={toggleDialog} />
-        </div>
-        <MsmeChartPopup/>
-      </Dialog>
-    )}
-  </>)}
-  </>);
+  </div></>)}
+  </div>);
 }
-  export default MsmeChart
+  export default MsmeChartPopup

@@ -9,11 +9,16 @@ import {
   ChartSeriesLabels,
   ChartTitle,
   ChartLegendTitle,
+  SeriesClickEvent,
   ChartLegendItem
 } from "@progress/kendo-react-charts";
-
 import "hammerjs";
+import { MdZoomOutMap } from "react-icons/md";
 
+import { AiOutlineClose } from "react-icons/ai";
+
+import { Dialog, DialogActionsBar } from "@progress/kendo-react-dialogs";
+import CategorySpendPopup from "../CategorySpendPopup";
 const pieData = [
   { category: "STEEL", value: 26 },
   { category: "FLOORING MATERIAL", value: 25 },
@@ -25,6 +30,11 @@ const pieData = [
 function CategorySpend2() {
     const [loading, setLoading] = React.useState(true)
     const [catalogSpendData, setCatalogSpendData] = React.useState<any[]>([])
+    const [largeView, setLargeView] = React.useState(true);
+
+    const toggleDialog = () => {
+      setLargeView(!largeView);
+    };
 
     React.useEffect(() => {
         const headers = {method: "GET",
@@ -54,10 +64,13 @@ function CategorySpend2() {
 
 
   return (
+    <>
     <div className="col-4">
         {loading ? <><Loader size="large" type={"infinite-spinner"} /></>:<><div className="k-card">
-        <Chart style={{ height: "300px",width:'450px' }}>
-          <ChartTitle text="Category Spent & Savings" />
+        <span className="chart-heading-section"><p>{" "}</p><p style={{ margin: 0 , color: '#000',fontWeight: 'bold'}} >Category Spent & Savings </p><button className="zoom-button" onClick={toggleDialog}><MdZoomOutMap /></button></span>
+
+        <Chart style={{ height: "300px",width:'450px' }} onSeriesClick={(event: SeriesClickEvent) => toggleDialog()}>
+          
           <ChartLegend position="bottom" >
           <ChartLegendItem />
           </ChartLegend>
@@ -74,6 +87,15 @@ function CategorySpend2() {
       </div></>}
       
     </div>
+    {largeView ? null : (
+      <Dialog onClose={toggleDialog}>
+        <div style={{ display: "flex", justifyContent: "flex-end" }}>
+          <AiOutlineClose onClick={toggleDialog} />
+        </div>
+        <CategorySpendPopup/>
+      </Dialog>
+    )}
+    </>
   );
 }
 

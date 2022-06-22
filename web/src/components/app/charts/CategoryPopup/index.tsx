@@ -13,23 +13,14 @@ import {
   ChartTitle,
   SeriesClickEvent,
 } from "@progress/kendo-react-charts";
-import { MdZoomOutMap } from "react-icons/md";
 
-import { AiOutlineClose } from "react-icons/ai";
-
-import { Dialog, DialogActionsBar } from "@progress/kendo-react-dialogs";
-import CategoryPopup from "../CategoryPopup";
-function PoSummary2() {
+function CategoryPopup() {
   const [visible, setVisible] = React.useState<boolean>(true);
   const [loading, setLoading] = React.useState(true)
 
   const [poData, setPoData] = React.useState<any[]>([]);
   const [poCategory, setPoCategory] = React.useState<any[]>([]);
-  const [largeView, setLargeView] = React.useState(true);
 
-  const toggleDialog = () => {
-    setLargeView(!largeView);
-  };
   useEffect(() => {
     const headers = {method: "GET",
     headers: {
@@ -60,20 +51,20 @@ function PoSummary2() {
     setVisible(!visible);
   };
 
+  const toggleDialog = () => {
+    setVisible(!visible);
+  };
 
 
  console.log(poCategory, poData)
   return (
     <>
-      <div className="col-4" >
+     <div className="col-12" style={{ width: "600px", height: "450px" }}>
           {loading ? (<><Loader size="large" type={"infinite-spinner"} /></>):(<><div className="k-card">
-          <span className="chart-heading-section"><p>{" "}</p><p style={{ margin: 0 , color: '#000',fontWeight: 'bold'}} >Category </p><button className="zoom-button" onClick={toggleDialog}><MdZoomOutMap /></button></span>
-
           <Chart
-            style={{ height: "300px",width:'450px'}}
-            onSeriesClick={(event: SeriesClickEvent) => toggleDialog()}
+            
           >
-           
+            <ChartTitle text="Category" />
             <ChartLegend position="bottom" orientation="horizontal" />
             <ChartCategoryAxis>
               <ChartCategoryAxisItem categories={poCategory} startAngle={0} labels={{ rotation: -35}} />
@@ -84,16 +75,8 @@ function PoSummary2() {
           </Chart>
         </div></>)}
       </div>
-      {largeView ? null : (
-      <Dialog onClose={toggleDialog}>
-        <div style={{ display: "flex", justifyContent: "flex-end" }}>
-          <AiOutlineClose onClick={toggleDialog} />
-        </div>
-        <CategoryPopup/>
-      </Dialog>
-    )}
     </>
   );
 }
 
-export default PoSummary2;
+export default CategoryPopup;

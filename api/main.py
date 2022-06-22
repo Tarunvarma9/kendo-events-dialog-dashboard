@@ -98,7 +98,7 @@ def get_MSME():
     for i in quries:
         v = UATdb(i)
         resultList.append(*v)
-    values =[ {"MSME Construction": resultList[0][0]},{"Non-MSME Construction":  resultList[1][0]},{"MSME Non-Con":   resultList[2][0]},{"NON MSME Non Con": resultList[3][0]} ]
+    values =[ ["MSME Construction", resultList[0][0]],["Non-MSME Construction",  resultList[1][0]],["MSME Non-Con",   resultList[2][0]],["NON MSME Non Con", resultList[3][0]] ]
     return values
 
 

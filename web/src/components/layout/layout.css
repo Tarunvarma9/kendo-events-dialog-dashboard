@@ -1,0 +1,12 @@
+.chart-heading-section{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 5px;
+   }
+   .zoom-button{
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+
+   }

@@ -3,7 +3,7 @@ import React from 'react'
 import ChartBoard from '../app/charts'
 import Header from './header/Header'
 import { GraphsProvider } from '../../context'
-
+import './layout.css'
 
 function Layout() {
   return (
