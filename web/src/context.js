@@ -3,9 +3,9 @@ import React, {createContext, useState} from 'react'
 const GraphsContext = createContext()
 // ["Category","MSME", "Classification", "CategorySpend"]
 export function GraphsProvider({children}){
-    const [graphsList, setGrapsList] = useState(["Category","MSME", "Classification", "CategorySpend"])
-    const [localList, setLocalList] = useState(["Category","MSME", "Classification", "CategorySpend"])
-    const dropdownList = ["Category","MSME", "Classification", "CategorySpend"]
+    const [graphsList, setGrapsList] = useState(["Category","MSME", "Classification", "CategorySpend","Cat vs Non-cat","Bu spend"])
+    const [localList, setLocalList] = useState(["Category","MSME", "Classification", "CategorySpend","Cat vs Non-cat","Bu spend"])
+    const dropdownList = ["Category","MSME", "Classification", "CategorySpend","Cat vs Non-cat","Bu spend"]
     const [loginUser, setLoginUser] = React.useState("")
     const [hidden, setHidden] = useState(true);
     const [submitButtonStatus, setSubmitButtonStatus] = React.useState(false)

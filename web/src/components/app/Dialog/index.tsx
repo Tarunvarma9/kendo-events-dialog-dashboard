@@ -9,7 +9,7 @@ function Dialog() {
   const onSubmitButtonClick = () => {
     hiddenview()
     handleSubmitButton()
-    const lista = ["Category","MSME", "Classification", "CategorySpend", "BarChart"]
+
   }
   
   return (

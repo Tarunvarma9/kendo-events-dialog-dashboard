@@ -82,7 +82,7 @@ function CategorySpend2() {
               </span>
 
               <Chart
-                style={{ height: "300px", width: "500px" }}
+                style={{ height: "300px", width: "450px" }}
                 onSeriesClick={(event: SeriesClickEvent) => toggleDialog()}
               >
                 <ChartLegend position="bottom">

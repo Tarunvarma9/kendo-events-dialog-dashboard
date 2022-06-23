@@ -53,7 +53,7 @@ return(<>
             </div></>):(<><div className="k-card">
  <span className="chart-heading-section"><p>{" "}</p><p style={{ margin: 0 , color: '#000',fontWeight: 'bold'}} >Classification </p><button className="zoom-button" onClick={toggleDialog}><MdZoomOutMap /></button></span>
 
-<Chart style={{height:'300px',width:'500px'}} onSeriesClick={(event: SeriesClickEvent) => toggleDialog()}>
+<Chart style={{height:'300px',width:'450px'}} onSeriesClick={(event: SeriesClickEvent) => toggleDialog()}>
 
 <ChartLegend position="bottom" orientation="horizontal" />
     <ChartSeries>

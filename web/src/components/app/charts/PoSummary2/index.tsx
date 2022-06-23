@@ -71,7 +71,7 @@ function PoSummary2() {
           <span className="chart-heading-section"><p>{" "}</p><p style={{ margin: 0 , color: '#000',fontWeight: 'bold'}} >Category </p><button className="zoom-button" onClick={toggleDialog}><MdZoomOutMap /></button></span>
 
           <Chart
-            style={{ height: "300px",width:'500px'}}
+            style={{ height: "300px",width:'450px'}}
             onSeriesClick={(event: SeriesClickEvent) => toggleDialog()}
           >
            

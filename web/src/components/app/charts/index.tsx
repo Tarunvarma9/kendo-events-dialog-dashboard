@@ -7,6 +7,8 @@ import CategorySpend2 from "./CategorySpend2";
 import MsmeChart from "./Msme";
 import ClassificationChart from "./Classification";
 import "../../../custom-event/custom-event.css";
+import DonutChart from "./DonutChart";
+import BarChart from "./BarChart";
 
 function ChartBoard() {
   const { hidden, changeView, graphsList,localList,hiddenview } = useContext(GraphsContext);
@@ -35,6 +37,8 @@ function ChartBoard() {
             {localList.includes("MSME") && <MsmeChart />}
             {localList.includes("Classification") && <ClassificationChart />}
             {localList.includes("CategorySpend") && <CategorySpend2 />}
+            {localList.includes("Cat vs Non-cat") && <DonutChart />}
+            {localList.includes("Bu spend") && <BarChart />}
           </div>
           <div>{hidden ? null : <Dialog />}</div>
         </div>
