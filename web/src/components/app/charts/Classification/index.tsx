@@ -31,7 +31,6 @@ const ClassificationChart = () =>{
         const fetchData = async () => {
           const data = await fetch(url, headers);
           const json = await data.json();
-          console.log(json,"classification")
           let data1 = []
           let data2:string[] = []
           for (let li of json){
@@ -49,10 +48,12 @@ const ClassificationChart = () =>{
       },[]);
 
 return(<>
- {loading ? (<><Loader size="large" type={"infinite-spinner"} /></>):(<><div className="k-card">
+ {loading ? (<><div className="loader-container">
+            <Loader  size="large" type={"infinite-spinner"} />
+            </div></>):(<><div className="k-card">
  <span className="chart-heading-section"><p>{" "}</p><p style={{ margin: 0 , color: '#000',fontWeight: 'bold'}} >Classification </p><button className="zoom-button" onClick={toggleDialog}><MdZoomOutMap /></button></span>
 
-<Chart style={{height:'300px',width:'450px'}} onSeriesClick={(event: SeriesClickEvent) => toggleDialog()}>
+<Chart style={{height:'300px',width:'500px'}} onSeriesClick={(event: SeriesClickEvent) => toggleDialog()}>
 
 <ChartLegend position="bottom" orientation="horizontal" />
     <ChartSeries>

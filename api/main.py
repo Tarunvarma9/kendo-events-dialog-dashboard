@@ -131,7 +131,7 @@ def get_Region():
 def login(request:LoginRequest,db:Session= Depends(get_db)):
     
     current_user=db.query(models.User).filter(models.User.username == request.username).first()
-    print(current_user.username,current_user.id)
+    
     if(current_user==None):
         return "user not found"
     else:

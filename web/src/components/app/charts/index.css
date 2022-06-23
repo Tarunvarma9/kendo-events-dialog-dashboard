@@ -4,6 +4,7 @@
     background: #bccbde;
     color:#000;
     border-radius: 8px;
+    cursor: pointer;
     font-size: 0.8rem;
     font-weight: 700;
     padding: 5px 15px;
@@ -14,4 +15,12 @@
 }
 .container{
     margin-top: 10px ;
+}
+.loader-container{
+    height: 300px;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    align-items: center;
 }

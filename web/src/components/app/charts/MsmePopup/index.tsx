@@ -20,7 +20,6 @@ const MsmeChartPopup = () =>{
         const fetchData = async () => {
           const data = await fetch(url, headers);
           const json = await data.json();
-          console.log(json,"msme")
           let data1 = []
           let data2:string[] = []
           for (let li of json){

@@ -37,7 +37,6 @@ function CategorySpendPopup() {
     const fetchData = async () => {
       const data = await fetch(url, headers);
       const json = await data.json();
-      console.log("catSpend2", json);
       let pieData: any[] = [];
       for (let li of json) {
         let objectData: any = { category: li[0], value: li[1] };

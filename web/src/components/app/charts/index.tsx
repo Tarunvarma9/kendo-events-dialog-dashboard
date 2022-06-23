@@ -9,15 +9,13 @@ import ClassificationChart from "./Classification";
 import "../../../custom-event/custom-event.css";
 
 function ChartBoard() {
-  const { hidden, changeView, graphsList } = useContext(GraphsContext);
-  console.log(graphsList);
-
+  const { hidden, changeView, graphsList,localList,hiddenview } = useContext(GraphsContext);
   return (
     <>
       <div className="container">
         <div style={{ display: "flex", justifyContent: "flex-end" }}>
           {hidden ? (
-            <button className="dialog-btn" onClick={changeView}>
+            <button className="dialog-btn" onClick={hiddenview}>
               Edit
             </button>
           ) : null}
@@ -33,10 +31,10 @@ function ChartBoard() {
               justifyContent: "center",
             }}
           >
-            {graphsList.includes("Category") && <PoSummary2 />}
-            {graphsList.includes("MSME") && <MsmeChart />}
-            {graphsList.includes("Classification") && <ClassificationChart />}
-            {graphsList.includes("CategorySpend") && <CategorySpend2 />}
+            {localList.includes("Category") && <PoSummary2 />}
+            {localList.includes("MSME") && <MsmeChart />}
+            {localList.includes("Classification") && <ClassificationChart />}
+            {localList.includes("CategorySpend") && <CategorySpend2 />}
           </div>
           <div>{hidden ? null : <Dialog />}</div>
         </div>

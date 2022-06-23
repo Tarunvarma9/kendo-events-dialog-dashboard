@@ -62,15 +62,16 @@ function PoSummary2() {
 
 
 
- console.log(poCategory, poData)
   return (
     <>
       <div className="col-4" >
-          {loading ? (<><Loader size="large" type={"infinite-spinner"} /></>):(<><div className="k-card">
+          {loading ? (<><div className="loader-container">
+            <Loader  size="large" type={"infinite-spinner"} />
+            </div></>):(<><div className="k-card">
           <span className="chart-heading-section"><p>{" "}</p><p style={{ margin: 0 , color: '#000',fontWeight: 'bold'}} >Category </p><button className="zoom-button" onClick={toggleDialog}><MdZoomOutMap /></button></span>
 
           <Chart
-            style={{ height: "300px",width:'450px'}}
+            style={{ height: "300px",width:'500px'}}
             onSeriesClick={(event: SeriesClickEvent) => toggleDialog()}
           >
            

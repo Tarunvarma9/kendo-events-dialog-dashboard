@@ -56,7 +56,6 @@ function CategoryPopup() {
   };
 
 
- console.log(poCategory, poData)
   return (
     <>
      <div className="col-12" style={{ width: "600px", height: "450px" }}>
